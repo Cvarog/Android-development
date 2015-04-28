@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="H:\Android\MyFirstApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="H:\Android\MyFirstApp\app\build\intermediates\pre-dexed\debug\classes-28ef52b40fe83d473cd99205423b322bf02bae16.jar" />
+    </item>
+    <item
+        jar="H:\Android\MyFirstApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="H:\Android\MyFirstApp\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-b8b30c5f2f4b19c02661d7c0e0bee5eb1e22c93a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Admin\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="H:\Android\MyFirstApp\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-0b9eab7257f72fda44abd403821cb82c6fb57798.jar" />
+    </item>
+    <item
+        jar="H:\Android\MyFirstApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="H:\Android\MyFirstApp\app\build\intermediates\pre-dexed\debug\classes-c734ea9edbff8a8a98a4dac765a0bb53119dd25d.jar" />
+    </item>
+
+</items>
