@@ -4,10 +4,17 @@
     android:layout_height="match_parent">
 
     <EditTextPreference
-        android:title="location"
+        android:title="Location"
         android:key="location"
-        android:defaultValue="440018,RU"
+        android:defaultValue="@string/pref_location_default"
         android:inputType="text"
         android:singleLine="true" />
+
+    <ListPreference
+        android:title="Temperature Units"
+        android:key="@string/pref_units_key"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues"
+        android:defaultValue="@string/pref_units_default_value" />
 
 </PreferenceScreen>
