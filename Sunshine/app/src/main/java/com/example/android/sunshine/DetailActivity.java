@@ -2,12 +2,16 @@ package com.example.android.sunshine;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,8 @@ import android.widget.TextView;
 
 public class DetailActivity extends ActionBarActivity {
 
+    private ShareActionProvider mShareActionProvider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +30,7 @@ public class DetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_detail);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new DetailFragment())
                     .commit();
         }
     }
@@ -56,24 +62,62 @@ public class DetailActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class DetailFragment extends Fragment {
 
-        public PlaceholderFragment() {
+        private static final String LOG_TAG = DetailFragment.class.getSimpleName();
+        private static final String FORECAST_SHARE_HASHTAG = "#SunshineApp";
+        private String mForecastStr;
+
+        public DetailFragment() {
+            setHasOptionsMenu(true);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
-
             Intent intent = getActivity().getIntent();
-            String message = intent.getStringExtra(Intent.EXTRA_TEXT);
+            mForecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
 
-            TextView textView = (TextView) rootView.findViewById(R.id.detail_text);
-            textView.setText(message);
+//            TextView textView = (TextView) rootView.findViewById(R.id.detail_text);
+//            textView.setText(mForecastStr);
+
+            ((TextView) rootView.findViewById(R.id.detail_text))
+                    .setText(mForecastStr);
 
             return rootView;
         }
+        @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            inflater.inflate(R.menu.detailfragment, menu);
+
+            // Retrieve the share menu item
+            MenuItem menuItem = menu.findItem(R.id.action_share);
+
+            // Get the provider and hold onto it to set/change the share intent.
+            ShareActionProvider mShareActionProvider =
+                    (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
+
+            // Attach an intent to this ShareActionProvider.  You can update this at any time,
+            // like when the user selects a new piece of data they might like to share.
+            if (mShareActionProvider != null ) {
+                mShareActionProvider.setShareIntent(createShareForecastIntent());
+            } else {
+                Log.d(LOG_TAG, "Share Action Provider is null?");
+            }
+        }
+
+        private Intent createShareForecastIntent() {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, mForecastStr + FORECAST_SHARE_HASHTAG);
+            return shareIntent;
+        }
+
     }
+
 }
