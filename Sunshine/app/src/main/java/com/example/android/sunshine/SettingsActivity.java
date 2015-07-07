@@ -42,9 +42,9 @@ public class SettingsActivity extends PreferenceActivity
             if (prefIndex >= 0) {
                 pref.setSummary(listPreference.getEntries()[prefIndex]);
             }
-        } else {
+        } else
             // For other preferences, set the summary to the value's simple string representation.
             pref.setSummary(sharedPreferences.getString(key, ""));
-        }
+
     }
 }
