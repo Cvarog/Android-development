@@ -1,5 +1,6 @@
 package com.example.android.movieapp;
 
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -12,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new MovieFragment())
                     .commit();
         }
     }
@@ -53,38 +56,8 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+}
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
 
-        private ArrayAdapter<String> movieAdapter;
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-            GridView gridView = (GridView) rootView.findViewById(R.id.gridView_movie);
-            ArrayList<String> strArray = new ArrayList<>();
-            strArray.add("Hello");
-            strArray.add("Heelo1");
-            strArray.add("Heelo2");
-            strArray.add("Heelo3");
-            strArray.add("Heelo4");
-            strArray.add("Heelo5");
-            strArray.add("Heelo6");
-            strArray.add("Heelo7");
-
-
-            movieAdapter = new ArrayAdapter<String>(getActivity(), R.layout.grid_item, strArray);
-            gridView.setAdapter(movieAdapter);
-
-            return rootView;
-        }
-    }
-}
